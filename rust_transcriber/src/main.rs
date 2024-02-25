@@ -34,8 +34,30 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
         let response_body = response.text().await?;
         println!("Transcription Response: {}", response_body);
     } else {
-        eprintln!("Error: {}", response.text().await?);
+        eprintln!("Error from whispwer: {}", response.text().await?);
     }
+
+// Danger Zone Below (Comment out and it works)
+
+    // let request_body = ChatCompletionRequest {
+    //     model: "gpt-3.5-turbo".to_string(),
+    //     messages: vec![
+    //         ChatMessage {
+    //             role: "system".to_string(),
+    //             content: "You are an expert in history who likes to respond with bullets.".to_string(),
+    //         },
+    //         ChatMessage {
+    //             role: "user".to_string(),
+    //             content: response_body, // Use the transcribed text here
+    //         },
+    //     ],
+    // };
+
+    // if let Some(request_body) = request_body {
+    //     println!("Request Body: {:?}", request_body);
+    // }
+
+// Danger Zone Above (Comment out and it works)
 
     Ok(())
 }
